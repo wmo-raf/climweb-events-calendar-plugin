@@ -1,0 +1,36 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}{{ current_year }} calendar{% endblock %}
+
+{% block extra_css %}
+{{ block.super }}
+<style>
+    table.month {
+        margin: 20px;
+    }
+
+    table.month td, table.month th {
+        padding: 5px;
+    }
+
+    .event-day {
+        text-decoration: underline;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+{% include "wagtailadmin/shared/header.html" with title="Calendar of Events this Month" icon="date" %}
+
+<div class="nice-padding">
+
+    {% if events_count %}
+    <h1>
+        Total number of events this month: {{ events_count }}
+    </h1>
+    {% endif %}
+
+
+    {{ calendar_html|safe }}
+</div>
+{% endblock %}
